@@ -47,7 +47,7 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 
 			*/
 
-		
+
 
 	}
 }
