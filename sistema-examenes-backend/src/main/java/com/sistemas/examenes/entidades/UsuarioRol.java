@@ -1,6 +1,6 @@
 package com.sistemas.examenes.entidades;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.util.HashSet;
