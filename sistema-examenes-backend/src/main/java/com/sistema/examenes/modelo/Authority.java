@@ -1,4 +1,4 @@
-package com.sistemas.examenes.entidades;
+package com.sistema.examenes.modelo;
 
 import org.springframework.security.core.GrantedAuthority;
 
@@ -14,4 +14,5 @@ public class Authority implements GrantedAuthority {
     public String getAuthority() {
         return this.authority;
     }
+
 }

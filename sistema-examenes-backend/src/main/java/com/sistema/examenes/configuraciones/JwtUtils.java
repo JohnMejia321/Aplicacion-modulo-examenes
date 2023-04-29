@@ -1,4 +1,4 @@
-package com.sistemas.examenes.configuraciones;
+package com.sistema.examenes.configuraciones;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -56,4 +56,3 @@ public class JwtUtils {
     }
 
 }
-

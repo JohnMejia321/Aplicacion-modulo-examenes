@@ -1,4 +1,4 @@
-package com.sistemas.examenes.entidades;
+package com.sistema.examenes.modelo;
 
 public class JwtRequest {
 

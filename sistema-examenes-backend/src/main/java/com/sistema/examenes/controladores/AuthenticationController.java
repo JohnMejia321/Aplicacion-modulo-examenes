@@ -1,10 +1,10 @@
-package com.sistemas.examenes.controladores;
+package com.sistema.examenes.controladores;
 
-import com.sistemas.examenes.configuraciones.JwtUtils;
-import com.sistemas.examenes.entidades.JwtRequest;
-import com.sistemas.examenes.entidades.JwtResponse;
-import com.sistemas.examenes.entidades.Usuario;
-import com.sistemas.examenes.servicios.impl.UserDetailsServiceImpl;
+import com.sistema.examenes.configuraciones.JwtUtils;
+import com.sistema.examenes.modelo.JwtRequest;
+import com.sistema.examenes.modelo.JwtResponse;
+import com.sistema.examenes.modelo.Usuario;
+import com.sistema.examenes.servicios.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -57,5 +57,4 @@ public class AuthenticationController {
     public Usuario obtenerUsuarioActual(Principal principal){
         return (Usuario) this.userDetailsService.loadUserByUsername(principal.getName());
     }
-
 }

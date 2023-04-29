@@ -1,14 +1,13 @@
-package com.sistemas.examenes.servicios.impl;
+package com.sistema.examenes.servicios.impl;
 
-import com.sistemas.examenes.entidades.Usuario;
-import com.sistemas.examenes.entidades.UsuarioRol;
-import com.sistemas.examenes.repositorios.RolRepository;
-import com.sistemas.examenes.repositorios.UsuarioRepository;
-import com.sistemas.examenes.servicios.UsuarioService;
+import com.sistema.examenes.modelo.Usuario;
+import com.sistema.examenes.modelo.UsuarioRol;
+import com.sistema.examenes.repositorios.RolRepository;
+import com.sistema.examenes.repositorios.UsuarioRepository;
+import com.sistema.examenes.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service
@@ -19,9 +18,10 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Autowired
     private RolRepository rolRepository;
+
     @Override
     public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception {
-        Usuario usuarioLocal = usuarioRepository.findByUserName(usuario.getUserName());
+        Usuario usuarioLocal = usuarioRepository.findByUsername(usuario.getUsername());
         if(usuarioLocal != null){
             System.out.println("El usuario ya existe");
             throw new Exception("El usuario ya esta presente");
@@ -37,18 +37,13 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario obtenerUsuario(String userName) {
-        return usuarioRepository.findByUserName(userName);
+    public Usuario obtenerUsuario(String username) {
+        return usuarioRepository.findByUsername(username);
     }
 
     @Override
     public void eliminarUsuario(Long usuarioId) {
         usuarioRepository.deleteById(usuarioId);
-
     }
 
-    @Override
-    public List<Usuario> obtenerUsuarios() {
-        return usuarioRepository.findAll();
-    }
 }

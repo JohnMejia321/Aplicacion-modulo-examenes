@@ -1,13 +1,8 @@
-package com.sistemas.examenes.entidades;
+package com.sistema.examenes.modelo;
 
 import javax.persistence.*;
-import lombok.Data;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
-
 public class UsuarioRol {
 
     @Id

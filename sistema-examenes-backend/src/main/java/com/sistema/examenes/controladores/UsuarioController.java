@@ -1,26 +1,24 @@
-package com.sistemas.examenes.controladores;
+package com.sistema.examenes.controladores;
 
-import com.sistemas.examenes.entidades.Rol;
-import com.sistemas.examenes.entidades.Usuario;
-import com.sistemas.examenes.entidades.UsuarioRol;
-import com.sistemas.examenes.servicios.UsuarioService;
+import com.sistema.examenes.modelo.Rol;
+import com.sistema.examenes.modelo.Usuario;
+import com.sistema.examenes.modelo.UsuarioRol;
+import com.sistema.examenes.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/usuarios")
+@RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired
-    UsuarioService usuarioService;
+    private UsuarioService usuarioService;
 
-
-    @PostMapping
+    @PostMapping("/")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
         usuario.setPerfil("default.png");
         Set<UsuarioRol> usuarioRoles = new HashSet<>();
@@ -43,13 +41,9 @@ public class UsuarioController {
         return usuarioService.obtenerUsuario(username);
     }
 
-    @GetMapping
-    public List<Usuario> obtenerUsuarios(){
-        return usuarioService.obtenerUsuarios();
-    }
-
     @DeleteMapping("/{usuarioId}")
     public void eliminarUsuario(@PathVariable("usuarioId") Long usuarioId){
         usuarioService.eliminarUsuario(usuarioId);
     }
+
 }
