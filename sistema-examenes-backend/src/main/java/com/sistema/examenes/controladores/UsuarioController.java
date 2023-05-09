@@ -19,7 +19,7 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @PostMapping()
+    @PostMapping("/")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{
         usuario.setPerfil("default.png");
         Set<UsuarioRol> usuarioRoles = new HashSet<>();

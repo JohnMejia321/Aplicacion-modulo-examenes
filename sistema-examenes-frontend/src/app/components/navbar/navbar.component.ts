@@ -1,5 +1,5 @@
+import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +7,7 @@ import { LoginService } from 'src/app/services/login/login.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+
 
   isLoggedIn = false;
   user:any = null;

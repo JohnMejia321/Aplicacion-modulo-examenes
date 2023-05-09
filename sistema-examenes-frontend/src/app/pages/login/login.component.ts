@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login/login.service';
-
+import { LoginService } from './../../services/login.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -11,14 +10,12 @@ import { LoginService } from '../../services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginData= {
-    "username": "",
-    "password": ""
+  loginData = {
+    "username" : '',
+    "password" : '',
   }
 
   constructor(private snack:MatSnackBar,private loginService:LoginService,private router:Router) { }
-
-  
 
   ngOnInit(): void {
   }
@@ -29,48 +26,45 @@ export class LoginComponent implements OnInit {
         duration:3000
       })
       return;
-  }
-
-  if(this.loginData.password.trim() == '' || this.loginData.password.trim() == null){
-    this.snack.open('La contraseña es requerida !!','Aceptar',{
-      duration:3000
-    })
-    return;
-  }
-
-  this.loginService.generateToken(this.loginData).subscribe(
-    (data:any)=>{
-      console.log(data);
-      this.loginService.loginUser(data.token);
-      this.loginService.getCurrentUser().subscribe((user:any) => {
-        this.loginService.setUser(user);
-        console.log(user);
-
-        if(this.loginService.getUserRole() == 'ADMIN'){
-          //dashboard admin
-          //window.location.href = '/admin';
-         // this.router.navigate(['admin']);
-         // this.loginService.loginStatusSubjec.next(true);
-        }
-        else if(this.loginService.getUserRole() == 'NORMAL'){
-          //user dashboard
-        //  window.location.href = '/user-dashboard';
-         this.router.navigate(['user-dashboard']);
-        this.loginService.loginStatusSubjec.next(true);
-        alert("usuario normal")
-        }
-        else{
-          this.loginService.logout();
-        }
-      })
-    },(error) => {
-      console.log(error);
-      this.snack.open('Detalles inválidos , vuelva a intentar !!','Aceptar',{
-        duration:3000
-      })
     }
 
-  )
+    if(this.loginData.password.trim() == '' || this.loginData.password.trim() == null){
+      this.snack.open('La contraseña es requerida !!','Aceptar',{
+        duration:3000
+      })
+      return;
+    }
 
-}
+    this.loginService.generateToken(this.loginData).subscribe(
+      (data:any) => {
+        console.log(data);
+        this.loginService.loginUser(data.token);
+        this.loginService.getCurrentUser().subscribe((user:any) => {
+          this.loginService.setUser(user);
+          console.log(user);
+
+          if(this.loginService.getUserRole() == 'ADMIN'){
+            //dashboard admin
+            //window.location.href = '/admin';
+            this.router.navigate(['admin']);
+            this.loginService.loginStatusSubjec.next(true);
+          }
+          else if(this.loginService.getUserRole() == 'NORMAL'){
+            //user dashboard
+            //window.location.href = '/user-dashboard';
+            this.router.navigate(['user-dashboard']);
+            this.loginService.loginStatusSubjec.next(true);
+          }
+          else{
+            this.loginService.logout();
+          }
+        })
+      },(error) => {
+        console.log(error);
+        this.snack.open('Detalles inválidos , vuelva a intentar !!','Aceptar',{
+          duration:3000
+        })
+      }
+    )
+  }
 }
